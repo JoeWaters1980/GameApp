@@ -5,8 +5,8 @@
     android:id="@+id/play_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".play_screen"
-    tools:deviceIds="wear">
+    android:background="#000000"
+    tools:context=".play_screen">
 
 
     <TextView
