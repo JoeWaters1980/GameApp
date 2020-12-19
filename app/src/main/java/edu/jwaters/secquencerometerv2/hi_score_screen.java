@@ -16,7 +16,7 @@ public class hi_score_screen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_hi_score_screen);
 
         listView = findViewById(R.id.lv);
 
