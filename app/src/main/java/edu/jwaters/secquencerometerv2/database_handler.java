@@ -65,7 +65,7 @@ public class database_handler extends SQLiteOpenHelper {
     }
 
     // code to add the new hiScore
-    void addHiScore(HiScore hiScore) {
+    void addHiScore(HighScore hiScore) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -80,7 +80,7 @@ public class database_handler extends SQLiteOpenHelper {
     }
 
     // code to get the single hiScore
-    HiScore getHiScore(int id) {
+    HighScore getHiScore(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_HI_SCORES, new String[]{
@@ -93,7 +93,7 @@ public class database_handler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        HiScore hiScore = new HiScore(Integer.parseInt(
+        HighScore hiScore = new HighScore(Integer.parseInt(
                 cursor.getString(0)),
                 cursor.getString(1),
                 cursor.getString(2),
@@ -103,8 +103,8 @@ public class database_handler extends SQLiteOpenHelper {
     }
 
     // code to get all hiScores in a list view
-    public List<HiScore> getAllHiScores() {
-        List<HiScore> hiScoreList = new ArrayList<HiScore>();
+    public List<HighScore> getAllHiScores() {
+        List<HighScore> hiScoreList = new ArrayList<HighScore>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_HI_SCORES;
 
@@ -114,7 +114,7 @@ public class database_handler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                HiScore hiScore = new HiScore();
+                HighScore hiScore = new HighScore();
                 hiScore.setScore_id(Integer.parseInt(cursor.getString(0)));
                 hiScore.setGame_date(cursor.getString(1));
                 hiScore.setPlayer_name(cursor.getString(2));
@@ -129,7 +129,7 @@ public class database_handler extends SQLiteOpenHelper {
     }
 
     // code to update the single hiScore
-    public int updateHiScore(HiScore hiScore) {
+    public int updateHiScore(HighScore hiScore) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -143,7 +143,7 @@ public class database_handler extends SQLiteOpenHelper {
     }
 
     // Deleting single hiScore
-    public void deleteHiScore(HiScore hiScore) {
+    public void deleteHiScore(HighScore hiScore) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_HI_SCORES, KEY_SCORE_ID + " = ?",
                 new String[]{String.valueOf(hiScore.getScore_id())});
@@ -151,8 +151,8 @@ public class database_handler extends SQLiteOpenHelper {
     }
 
     // Getting top 5 scores
-    public List<HiScore> getTopFiveScores() {
-        List<HiScore> hiScoreList = new ArrayList<HiScore>();
+    public List<HighScore> getTopFiveScores() {
+        List<HighScore> hiScoreList = new ArrayList<HighScore>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_HI_SCORES +
                 " ORDER BY SCORE DESC " +
@@ -164,7 +164,7 @@ public class database_handler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                HiScore hiScore = new HiScore();
+                HighScore hiScore = new HighScore();
                 hiScore.setScore_id(Integer.parseInt(cursor.getString(0)));
                 hiScore.setGame_date(cursor.getString(1));
                 hiScore.setPlayer_name(cursor.getString(2));

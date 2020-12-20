@@ -1,14 +1,14 @@
 package edu.jwaters.secquencerometerv2;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class hi_score_screen extends AppCompatActivity {
 
@@ -17,7 +17,6 @@ public class hi_score_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hi_score_screen);
-
         listView = findViewById(R.id.lv);
 
         database_handler db = new database_handler(this);
@@ -26,22 +25,22 @@ public class hi_score_screen extends AppCompatActivity {
 
         // Inserting hi scores
         Log.i("Insert: ", "Inserting ..");
-        db.addHiScore(new HiScore("20 OCT 2020", "Frodo", 12));
-        db.addHiScore(new HiScore("28 OCT 2020", "Dobby", 16));
-        db.addHiScore(new HiScore("20 NOV 2020", "DarthV", 20));
-        db.addHiScore(new HiScore("20 NOV 2020", "Bob", 18));
-        db.addHiScore(new HiScore("22 NOV 2020", "Gemma", 22));
-        db.addHiScore(new HiScore("30 NOV 2020", "Joe", 30));
-        db.addHiScore(new HiScore("01 DEC 2020", "DarthV", 22));
-        db.addHiScore(new HiScore("02 DEC 2020", "Gandalf", 132));
+        db.addHiScore(new HighScore("20 OCT 2020", "Frodo", 12));
+        db.addHiScore(new HighScore("28 OCT 2020", "Dobby", 16));
+        db.addHiScore(new HighScore("20 NOV 2020", "DarthV", 20));
+        db.addHiScore(new HighScore("20 NOV 2020", "Bob", 18));
+        db.addHiScore(new HighScore("22 NOV 2020", "Gemma", 22));
+        db.addHiScore(new HighScore("30 NOV 2020", "Joe", 30));
+        db.addHiScore(new HighScore("01 DEC 2020", "DarthV", 22));
+        db.addHiScore(new HighScore("02 DEC 2020", "Gandalf", 132));
 
 
         // Reading all scores
         Log.i("Reading: ", "Reading all scores..");
-        List<HiScore> hiScores = db.getAllHiScores();
+        List<HighScore> hiScores = db.getAllHiScores();
 
 
-        for (HiScore hs : hiScores) {
+        for (HighScore hs : hiScores) {
             String log =
                     "Id: " + hs.getScore_id() +
                             ", Date: " + hs.getGame_date() +
@@ -54,16 +53,16 @@ public class hi_score_screen extends AppCompatActivity {
 
         Log.i("divider", "====================");
 
-        HiScore singleScore = db.getHiScore(5);
+        HighScore singleScore = db.getHiScore(5);
         Log.i("High Score 5 is by ", singleScore.getPlayer_name() + " with a score of " +
                 singleScore.getScore());
 
         Log.i("divider", "====================");
 
         // Calling SQL statement
-        List<HiScore> top5HiScores = db.getTopFiveScores();
+        List<HighScore> top5HiScores = db.getTopFiveScores();
 
-        for (HiScore hs : top5HiScores) {
+        for (HighScore hs : top5HiScores) {
             String log =
                     "Id: " + hs.getScore_id() +
                             ", Date: " + hs.getGame_date() +
@@ -75,7 +74,7 @@ public class hi_score_screen extends AppCompatActivity {
         }
         Log.i("divider", "====================");
 
-        HiScore hiScore = top5HiScores.get(top5HiScores.size() - 1);
+        HighScore hiScore = top5HiScores.get(top5HiScores.size() - 1);
         // hiScore contains the 5th highest score
         Log.i("fifth Highest score: ", String.valueOf(hiScore.getScore()) );
 
@@ -83,7 +82,7 @@ public class hi_score_screen extends AppCompatActivity {
         int myCurrentScore = 40;
         // if 5th highest score < myCurrentScore, then insert new score
         if (hiScore.getScore() < myCurrentScore) {
-            db.addHiScore(new HiScore("08 DEC 2020", "Elrond", 40));
+            db.addHiScore(new HighScore("08 DEC 2020", "Elrond", 40));
         }
 
         Log.i("divider", "====================");
@@ -94,7 +93,7 @@ public class hi_score_screen extends AppCompatActivity {
         scoresStr = new ArrayList<>();
 
         int j = 1;
-        for (HiScore hs : top5HiScores) {
+        for (HighScore hs : top5HiScores) {
 
             String log =
                     "Id: " + hs.getScore_id() +
@@ -116,9 +115,17 @@ public class hi_score_screen extends AppCompatActivity {
             Log.i("Score: ", ss);
         }
 
+     /*   ArrayAdapter<String> itemsAdapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, scoresStr);
+        ListItemShow.setTextColor(Color.parseColor("#fe00fb"));*/
+
+
         ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, scoresStr);
         listView.setAdapter(itemsAdapter);
 
+
     }
+
+
 }

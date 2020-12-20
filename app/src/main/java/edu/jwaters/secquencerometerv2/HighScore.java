@@ -1,5 +1,5 @@
 package edu.jwaters.secquencerometerv2;
-public class HiScore {
+public class HighScore {
     /*
      * CREATE TABLE hi-scores (
      *      score_id INTEGER PRIMARY KEY,
@@ -16,20 +16,20 @@ public class HiScore {
     /*
      * Constructors
      */
-    public HiScore(int score_id, String game_date, String player_name, int score) {
+    public HighScore(int score_id, String game_date, String player_name, int score) {
         this.score_id = score_id;
         this.game_date = game_date;
         this.player_name = player_name;
         this.score = score;
     }
 
-    public HiScore() {
+    public HighScore() {
     }
 
     /*
      * Getter and setter methods
      */
-    public HiScore(String game_date, String player_name, int score) {
+    public HighScore(String game_date, String player_name, int score) {
         this.game_date = game_date;
         this.player_name = player_name;
         this.score = score;
