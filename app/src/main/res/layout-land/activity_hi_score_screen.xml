@@ -41,7 +41,6 @@
 
     <ListView
         android:id="@+id/lv"
-        style="@style/Widget.AppCompat.Light.ListView.DropDown"
         android:layout_width="648dp"
         android:layout_height="282dp"
         android:textColor="@color/colorOldSchool"
